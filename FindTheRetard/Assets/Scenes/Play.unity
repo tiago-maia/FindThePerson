@@ -336,12 +336,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66846dd5d057b604cae6b59ba08bcb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peopleParent: {fileID: 0}
-  headAccessories: []
-  maskMaterials: []
-  shirtMaterials: []
-  pantsMaterials: []
-  personPrefab: {fileID: 0}
+  peopleParent: {fileID: 1084144613}
+  headAccessories:
+  - {fileID: 0}
+  maskMaterials:
+  - {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+  shirtMaterials:
+  - {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+  pantsMaterials:
+  - {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+  personPrefab: {fileID: 6010638838167356687, guid: ed7a5ab1efb45904d92a0b6d5683c91d,
+    type: 3}
 --- !u!4 &802064432
 Transform:
   m_ObjectHideFlags: 0
@@ -350,7 +355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802064430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.8226433, y: 2.0018122, z: -0.92643607}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -432,13 +437,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.44932872, y: -0, z: -0, w: 0.8933665}
+  m_LocalPosition: {x: 0, y: 26.95, z: -26.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 53.401, y: 0, z: 0}
 --- !u!1 &1084144612
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1084144613}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Peoplessssss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
