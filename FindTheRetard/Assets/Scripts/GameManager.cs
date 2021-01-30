@@ -104,18 +104,19 @@ public class GameManager : MonoBehaviour
 		});
 
 		mainMenuButtonEndGame.onClick.AddListener(() => {
+			CreateNewGame();	// for start menu
 			OpenMenu(Menu.Start);
 		});
 
 		endGameVideoPlayer.prepareCompleted += player => {
 			player.time = 9f;
 			player.Play();
-			themeAudioSource.DOFade(0.1f, 0.25f);
+			themeAudioSource.DOFade(0.05f, 0.25f);
 		};
 
 		endGameVideoPlayer.loopPointReached += player => {
 			player.Stop();
-			themeAudioSource.DOFade(1f, 1f);
+			themeAudioSource.DOFade(0.5f, 0.25f);
 		};
 	}
 
@@ -135,7 +136,7 @@ public class GameManager : MonoBehaviour
 		// clear any pending things
 		endGameVideoPlayer.Stop();
 		themeAudioSource.DOKill();
-		themeAudioSource.DOFade(1f, 1f);
+		themeAudioSource.volume = 0.5f;
 
 		// disable all menus
 		startMenuUIObject.SetActive(false);
