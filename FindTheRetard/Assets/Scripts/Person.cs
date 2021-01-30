@@ -47,14 +47,17 @@ public class Person : MonoBehaviour
 		this.PersonAssets = personAssets;
 		this.mapSize = mapSize;
 
-		headMeshFilter.mesh = personAssets.HeadAccessory?.Mesh;
+		if (personAssets != null)
+		{
+			headMeshFilter.mesh = personAssets.HeadAccessory?.Mesh;
 
-		// needs to be done like this because the array Unity returns is a copy
-		Material[] materials = meshRenderer.materials;
-		materials[0] = personAssets.MaskMaterial.Material;
-		materials[1] = personAssets.ShirtMaterial.Material;
-		materials[2] = personAssets.PantsMaterial.Material;
-		meshRenderer.materials = materials;
+			// needs to be done like this because the array Unity returns is a copy
+			Material[] materials = meshRenderer.materials;
+			materials[0] = personAssets.MaskMaterial.Material;
+			materials[1] = personAssets.ShirtMaterial.Material;
+			materials[2] = personAssets.PantsMaterial.Material;
+			meshRenderer.materials = materials;
+		}
 
 		transform.position = GetRandomMapPosition();
 		SetRandomTarget();
