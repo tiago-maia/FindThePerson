@@ -7,7 +7,6 @@ using UnityEngine.Video;
 using DG.Tweening;
 
 /*
-- Restrict game to 16:9
 - Game UI - target person
 - Improve game "skybox"
 */
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] VideoPlayer endGameVideoPlayer;
 
 	[SerializeField] Person[] randomPeopleWithJOBS;
-	
+
 
 	enum Menu
 	{
@@ -255,16 +254,18 @@ public class GameManager : MonoBehaviour
 		{
 			Person person;
 			PersonAssets personAssets;
-			int value = Random.Range(0,100);
-			if (value <= 20) {
-				person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
-				personAssets = null;
-			} else {
+
+			// int value = Random.Range(0,100);
+			// if (value <= 20) {
+			// 	person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
+			// 	personAssets = null;
+			// } else {
 				person = InstantiatePerson();
 				personAssets = GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets);
-			}
-				person.Setup(personAssets, mapSize);
-				people.Add(person);
+			// }
+
+			person.Setup(personAssets, mapSize);
+			people.Add(person);
 		}
 
 		timeLeft = StartingTime;
