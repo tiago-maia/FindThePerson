@@ -21,12 +21,13 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		CreateNewGame(1000);
+		CreateNewGame(50);
 	}
 
 	void CreateNewGame(int nPeople)
 	{
 		this.targetPerson = InstantiateRandomPerson();
+		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
 		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
 		people.Add(this.targetPerson);
 
@@ -56,27 +57,22 @@ public class GameManager : MonoBehaviour
 
 	PersonAssets GetRandomPersonAssetsDifferentFrom(PersonAssets personAssets)
 	{
-		return new PersonAssets {
-			// HeadAccessory = ChooseRandomButDifferent(assets.HeadAccessories, personAssets.HeadAccessory),
-			MaskMaterial = ChooseRandomButDifferent(assets.MaskMaterials, personAssets.MaskMaterial),
-			ShirtMaterial = ChooseRandomButDifferent(assets.ShirtMaterials, personAssets.ShirtMaterial),
-			PantsMaterial = ChooseRandomButDifferent(assets.PantsMaterials, personAssets.PantsMaterial)
-		};
+		PersonAssets newPersonAssets;
+
+		do {
+			newPersonAssets = new PersonAssets {
+				// HeadAccessory = ChooseRandom(assets.HeadAccessories),
+				MaskMaterial = ChooseRandom(assets.MaskMaterials),
+				ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
+				PantsMaterial = ChooseRandom(assets.PantsMaterials)
+			};
+		} while (personAssets.Equals(newPersonAssets));
+
+		return newPersonAssets;
 	}
 
 	T ChooseRandom<T>(T[] array)
 	{
 		return array[Random.Range(0, array.Length)];
-	}
-
-	T ChooseRandomButDifferent<T>(T[] array, T exclusion) where T : class
-	{
-		T choice;
-
-		do {
-			choice = array[Random.Range(0, array.Length)];
-		} while (choice == exclusion);
-
-		return choice;
 	}
 }
