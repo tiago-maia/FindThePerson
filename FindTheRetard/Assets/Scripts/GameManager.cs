@@ -1,32 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Random = UnityEngine.Random;
+using UnityEngine.Video;
+using DG.Tweening;
 
 /*
-- Start Menu UI
-- Game UI
-	- Restart button
-	- Pause w/ black bg
-	- Time left/elapsed
 - Restrict game to 16:9
 - Game UI - target person
-	- For now draw colors??
-	- Draw sprites
-- Game end screen
-	- Restart, time, you win/you lose
 - Improve game "skybox"
 - Implement police/other weird people(?)
 */
 
 public class GameManager : MonoBehaviour
 {
-	// Need to randomly create a number of persons ( range ? 20 - 30 ? Increase with difficulty ? ) and to randomize their clothes
-	// Create instance of Correct Person
-
 	[Header("Project references")]
 	[SerializeField] Assets assets;
 	[SerializeField] Person personPrefab;
@@ -34,18 +22,21 @@ public class GameManager : MonoBehaviour
 	[Header("Scene references")]
 	[SerializeField] Transform peopleParent;
 	[SerializeField] Camera cameraMain;
+	[SerializeField] AudioSource themeAudioSource;
 
 	[Header("UI menus")]
 	[SerializeField] GameObject startMenuUIObject;
 	[SerializeField] GameObject gameUIObject;
 	[SerializeField] GameObject gameEndUIObject;
 
+	[Header("Start Menu references")]
+	[SerializeField] TextMeshProUGUI titleText;
+	[SerializeField] Button startButton;
+
 	[Header("Game UI references")]
 	[SerializeField] TextMeshProUGUI timeText;
-
 	[SerializeField] Button restartButton;
-	[SerializeField] Button pauseButton;
-	
+
 	[SerializeField] Image headImage;
 	[SerializeField] Image maskImage;
 	[SerializeField] Image shirtImage;
@@ -56,6 +47,14 @@ public class GameManager : MonoBehaviour
 	[SerializeField] TextMeshProUGUI timeLeftEndScreenText;
 	[SerializeField] Button restartButtonEndGame;
 	[SerializeField] Button mainMenuButtonEndGame;
+	[SerializeField] VideoPlayer endGameVideoPlayer;
+
+	enum Menu
+	{
+		Start,
+		Game,
+		End,
+	}
 
 	List<Person> people = new List<Person>();
 
@@ -69,14 +68,15 @@ public class GameManager : MonoBehaviour
 	void Start()
 	{
 		RegisterUICallbacks();
-		CreateNewGame(200);
+		PrepareTweens();
+		CreateNewGame();
+		OpenMenu(Menu.Start);
 	}
 
 	void Update()
 	{
-		if (timeLeft <= 0) {
-			return;
-		}
+		if (IsActiveMenu(Menu.Start)) return;
+		if (timeLeft <= 0) return;
 
 		timeLeft -= Time.deltaTime;
 		DrawTime(timeLeft);
@@ -90,23 +90,77 @@ public class GameManager : MonoBehaviour
 
 	private void RegisterUICallbacks()
 	{
-		restartButton.onClick.AddListener(() => {
-			CreateNewGame(200);
+		startButton.onClick.AddListener(() => {
+			OpenMenu(Menu.Game);
 		});
 
-		pauseButton.onClick.AddListener(() => {
-			/*  */
+		restartButton.onClick.AddListener(() => {
+			CreateNewGame();
 		});
 
 		restartButtonEndGame.onClick.AddListener(() => {
-			CreateNewGame(200);
-			gameEndUIObject.SetActive(false);
-			gameUIObject.SetActive(true);
+			CreateNewGame();
+			OpenMenu(Menu.Game);
 		});
 
 		mainMenuButtonEndGame.onClick.AddListener(() => {
-			/*  */
+			OpenMenu(Menu.Start);
 		});
+
+		endGameVideoPlayer.prepareCompleted += player => {
+			player.time = 9f;
+			player.Play();
+			themeAudioSource.DOFade(0.1f, 0.25f);
+		};
+
+		endGameVideoPlayer.loopPointReached += player => {
+			player.Stop();
+			themeAudioSource.DOFade(1f, 1f);
+		};
+	}
+
+	private void PrepareTweens()
+	{
+		startButton.targetGraphic.DOFade(0.25f, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+
+		DOTween.Sequence()
+			.Append(titleText.transform.DOLocalMoveY(50f, 0.1f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.Linear))
+			.AppendInterval(0.26154f)
+			.SetLoops(-1, LoopType.Restart)
+			.SetEase(Ease.Linear);
+	}
+
+	private void OpenMenu(Menu menu)
+	{
+		// clear any pending things
+		endGameVideoPlayer.Stop();
+		themeAudioSource.DOKill();
+		themeAudioSource.DOFade(1f, 1f);
+
+		// disable all menus
+		startMenuUIObject.SetActive(false);
+		gameUIObject.SetActive(false);
+		gameEndUIObject.SetActive(false);
+
+		// enable the only one that matters
+		switch (menu)
+		{
+			case Menu.Start: startMenuUIObject.SetActive(true); break;
+			case Menu.Game:  gameUIObject.SetActive(true);      break;
+			case Menu.End:   gameEndUIObject.SetActive(true);   break;
+		}
+	}
+
+	private bool IsActiveMenu(Menu menu)
+	{
+		switch (menu)
+		{
+			case Menu.Start: return startMenuUIObject.activeSelf;
+			case Menu.Game:  return gameUIObject.activeSelf;
+			case Menu.End:   return gameEndUIObject.activeSelf;
+		}
+
+		return false;
 	}
 
 	private void DrawTime(float time)
@@ -158,28 +212,38 @@ public class GameManager : MonoBehaviour
 		foreach (Person person in people) {
 			person.Disable();
 		}
-		gameUIObject.SetActive(false);
-		gameEndUIObject.SetActive(true);
 
-		endScreenText.text = isVictory ? " You WON " : " You LOSE ";
-	
+		OpenMenu(Menu.End);
+
+		bool isTópe = timeLeft > StartingTime - 5f;	// finished game in less than 5s
+
+		endScreenText.text = isVictory
+			? (isTópe ? "TÓPE!" : " You WON ")
+			: " You LOSE ";
+
 		timeLeftEndScreenText.text = timeText.text;
 		timeLeftEndScreenText.enabled = isVictory;
+
+		if (isTópe) {
+			endGameVideoPlayer.Prepare();
+		}
 	}
 
-	private void CreateNewGame(int nPeople)
+	private void CreateNewGame()
 	{
 		foreach (Transform child in peopleParent) {
 			Destroy(child.gameObject);
 		}
 		people.Clear();
 
+		const int nPeople = 200;
+
 		this.targetPerson = InstantiatePerson();
 		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
 		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
 		people.Add(this.targetPerson);
 
-		// headImage.sprite = targetPerson.PersonAssets.HeadAccessory.UIImage;
+		headImage.sprite = targetPerson.PersonAssets.HeadAccessory.UIImage;
 		maskImage.sprite = targetPerson.PersonAssets.MaskMaterial.UIImage;
 		shirtImage.sprite = targetPerson.PersonAssets.ShirtMaterial.UIImage;
 		pantsImage.sprite = targetPerson.PersonAssets.PantsMaterial.UIImage;
@@ -203,7 +267,7 @@ public class GameManager : MonoBehaviour
 	private PersonAssets GetRandomPersonAssets()
 	{
 		return new PersonAssets {
-			// HeadAccessory = ChooseRandom(assets.HeadAccessories),
+			HeadAccessory = ChooseRandom(assets.HeadAccessories),
 			MaskMaterial = ChooseRandom(assets.MaskMaterials),
 			ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
 			PantsMaterial = ChooseRandom(assets.PantsMaterials)
@@ -216,7 +280,7 @@ public class GameManager : MonoBehaviour
 
 		do {
 			newPersonAssets = new PersonAssets {
-				// HeadAccessory = ChooseRandom(assets.HeadAccessories),
+				HeadAccessory = ChooseRandom(assets.HeadAccessories),
 				MaskMaterial = ChooseRandom(assets.MaskMaterials),
 				ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
 				PantsMaterial = ChooseRandom(assets.PantsMaterials)

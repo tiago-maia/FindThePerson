@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using OutlineNamespace;
 
 public class Person : MonoBehaviour
 {
@@ -29,11 +30,13 @@ public class Person : MonoBehaviour
 
 	void Update()
 	{
+		if (!navMeshAgent.enabled) return;
+
 		if ((targetPoint - transform.position).magnitude < TARGET_REACHED_DISTANCE) {
 			SetRandomTarget();
 		}
 	}
-	
+
 	public void Disable()
 	{
 		navMeshAgent.enabled = false;
