@@ -31,38 +31,41 @@ public class GameManager : MonoBehaviour
 		CheckForMousePositionAndClick();
 	}
 
-    private void CheckForMousePositionAndClick()
-    {
+	private void CheckForMousePositionAndClick()
+	{
 		RaycastHit raycastHit;
 		Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
 
 		if (Physics.Raycast(ray, out raycastHit))
 		{
 			Person person = raycastHit.transform.GetComponent<Person>();
-			if (person != null) 
+			if (person != null)
 			{
 				person.SetHightlight(true);
 			}
 
-			if (lastHoveredPerson != null) {
-				lastHoveredPerson.SetHightlight(false);
-			}
+			if (person != lastHoveredPerson)
+			{
+				if (lastHoveredPerson != null) {
+					lastHoveredPerson.SetHightlight(false);
+				}
 
-			lastHoveredPerson = person;
+				lastHoveredPerson = person;
+			}
 
 			if (Input.GetMouseButtonDown(0) && person == targetPerson) {
 				Debug.Log("Acertaste , T O P");
 			}
-		} 
+		}
 		else
 		{
 			if (lastHoveredPerson != null) {
 				lastHoveredPerson.SetHightlight(false);
 			}
 		}
-    }
+	}
 
-    void CreateNewGame(int nPeople)
+	void CreateNewGame(int nPeople)
 	{
 		this.targetPerson = InstantiatePerson();
 		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);

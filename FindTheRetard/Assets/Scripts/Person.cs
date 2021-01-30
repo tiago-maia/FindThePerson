@@ -72,7 +72,6 @@ public class Person : MonoBehaviour
 	{
 		if (enabled) {
 			outline.OutlineWidth = 1f;
-			Debug.Log("asdasdasdasda");
 		} else {
 			outline.OutlineWidth = 0f;
 		}

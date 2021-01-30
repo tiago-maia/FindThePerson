@@ -246,6 +246,7 @@ MonoBehaviour:
   peopleParent: {fileID: 1084144613}
   personPrefab: {fileID: 6010638838167356687, guid: ed7a5ab1efb45904d92a0b6d5683c91d,
     type: 3}
+  cameraMain: {fileID: 963194227}
 --- !u!4 &802064432
 Transform:
   m_ObjectHideFlags: 0
