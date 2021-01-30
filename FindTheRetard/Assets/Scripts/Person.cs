@@ -11,6 +11,8 @@ public class Person : MonoBehaviour
 	private MeshFilter headMeshFilter;
 	[SerializeField]
 	private MeshRenderer headMeshRenderer;
+	[SerializeField]
+	private Outline outline;
 
 	public PersonAssets PersonAssets;
 	private Vector3 mapSize;
@@ -18,6 +20,7 @@ public class Person : MonoBehaviour
 	private Vector3 targetPoint;
 	private NavMeshAgent navMeshAgent;
 	private const float TARGET_REACHED_DISTANCE = 1f;
+
 
 	void Awake()
 	{
@@ -47,6 +50,7 @@ public class Person : MonoBehaviour
 
 		transform.position = GetRandomMapPosition();
 		SetRandomTarget();
+		SetHightlight(false);
 	}
 
 	private void SetRandomTarget()
@@ -62,5 +66,15 @@ public class Person : MonoBehaviour
 			0,
 			Random.Range(-mapSize.z/2, mapSize.z/2)
 		);
+	}
+
+	public void SetHightlight(bool enabled)
+	{
+		if (enabled) {
+			outline.OutlineWidth = 1f;
+			Debug.Log("asdasdasdasda");
+		} else {
+			outline.OutlineWidth = 0f;
+		}
 	}
 }
