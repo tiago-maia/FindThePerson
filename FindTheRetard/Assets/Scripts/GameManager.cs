@@ -1,22 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
 	// Need to randomly create a number of persons ( range ? 20 - 30 ? Increase with difficulty ? ) and to randomize their clothes
 	// Create instance of Correct Person
 
+	[SerializeField] Assets assets;
 	[SerializeField] Transform peopleParent;
-
-	[SerializeField] Mesh[] headAccessories;
-	[SerializeField] Material[] maskMaterials;
-	[SerializeField] Material[] shirtMaterials;
-	[SerializeField] Material[] pantsMaterials;
 
 	[SerializeField] Person personPrefab;
 
 	List<Person> people = new List<Person>();
+
+	readonly Vector3 mapSize = new Vector3(24, 0, 24);
+	Person targetPerson;
 
 	void Start()
 	{
@@ -25,11 +26,16 @@ public class GameManager : MonoBehaviour
 
 	void CreateNewGame(int nPeople)
 	{
-		for (int i = 0; i < nPeople; i++)
+		this.targetPerson = InstantiateRandomPerson();
+		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
+		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
+		people.Add(this.targetPerson);
+
+		for (int i = 0; i < nPeople-1; i++)	// -1 since target was already chosen
 		{
 			Person person = InstantiateRandomPerson();
+			person.Setup(GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets), mapSize);
 			people.Add(person);
-			RandomizePerson(person);
 		}
 	}
 
@@ -39,14 +45,30 @@ public class GameManager : MonoBehaviour
 		return person;
 	}
 
-	void RandomizePerson(Person person)
+	PersonAssets GetRandomPersonAssets()
 	{
-		Mesh headAccessory = ChooseRandom(headAccessories);
-		Material maskMaterial = ChooseRandom(maskMaterials);
-		Material shirtMaterial = ChooseRandom(shirtMaterials);
-		Material pantsMaterial = ChooseRandom(pantsMaterials);
+		return new PersonAssets {
+			// HeadAccessory = ChooseRandom(assets.HeadAccessories),
+			MaskMaterial = ChooseRandom(assets.MaskMaterials),
+			ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
+			PantsMaterial = ChooseRandom(assets.PantsMaterials)
+		};
+	}
 
-		person.Setup(maskMaterial, shirtMaterial, pantsMaterial, headAccessory);
+	PersonAssets GetRandomPersonAssetsDifferentFrom(PersonAssets personAssets)
+	{
+		PersonAssets newPersonAssets;
+
+		do {
+			newPersonAssets = new PersonAssets {
+				// HeadAccessory = ChooseRandom(assets.HeadAccessories),
+				MaskMaterial = ChooseRandom(assets.MaskMaterials),
+				ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
+				PantsMaterial = ChooseRandom(assets.PantsMaterials)
+			};
+		} while (personAssets.Equals(newPersonAssets));
+
+		return newPersonAssets;
 	}
 
 	T ChooseRandom<T>(T[] array)

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3183b39042cfc469bfb9de51d7e85d, type: 3}
+  m_Name: Assets
+  m_EditorClassIdentifier:
+  HeadAccessories: []
+  MaskMaterials:
+  - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
+    UIImage: {fileID: 0}
+  ShirtMaterials:
+  - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
+    UIImage: {fileID: 0}
+  PantsMaterials:
+  - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
+    UIImage: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
+    UIImage: {fileID: 0}

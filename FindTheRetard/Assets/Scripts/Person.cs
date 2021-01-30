@@ -12,18 +12,16 @@ public class Person : MonoBehaviour
 	[SerializeField]
 	private MeshRenderer headMeshRenderer;
 
-	private Material maskMaterial;
-	private Material shirtMaterial;
-	private Material pantsMaterial;
+	public PersonAssets PersonAssets;
+	private Vector3 mapSize;
 
 	private Vector3 targetPoint;
 	private NavMeshAgent navMeshAgent;
 	private const float TARGET_REACHED_DISTANCE = 1f;
 
-	void Start()
+	void Awake()
 	{
 		navMeshAgent = GetComponent<NavMeshAgent>();
-		SetRandomTarget();
 	}
 
 	void Update()
@@ -33,17 +31,36 @@ public class Person : MonoBehaviour
 		}
 	}
 
-	public void Setup(Material maskMaterial, Material shirtMaterial, Material pantsMaterial, Mesh headAccessory)
+	public void Setup(PersonAssets personAssets, Vector3 mapSize)
 	{
-		meshRenderer.materials[0] = maskMaterial;
-		meshRenderer.materials[1] = shirtMaterial;
-		meshRenderer.materials[2] = pantsMaterial;
-		headMeshFilter.mesh = headAccessory;
+		this.PersonAssets = personAssets;
+		this.mapSize = mapSize;
+
+		headMeshFilter.mesh = personAssets.HeadAccessory?.Mesh;
+
+		// needs to be done like this because the array Unity returns is a copy
+		Material[] materials = meshRenderer.materials;
+		materials[0] = personAssets.MaskMaterial.Material;
+		materials[1] = personAssets.ShirtMaterial.Material;
+		materials[2] = personAssets.PantsMaterial.Material;
+		meshRenderer.materials = materials;
+
+		transform.position = GetRandomMapPosition();
+		SetRandomTarget();
 	}
 
 	private void SetRandomTarget()
 	{
-		targetPoint = new Vector3(Random.Range(-30f, 30f), 0, Random.Range(-30f, 30f));
+		targetPoint = GetRandomMapPosition();
 		navMeshAgent.destination = targetPoint;
+	}
+
+	private Vector3 GetRandomMapPosition()
+	{
+		return new Vector3(
+			Random.Range(-mapSize.x/2, mapSize.x/2),
+			0,
+			Random.Range(-mapSize.z/2, mapSize.z/2)
+		);
 	}
 }
