@@ -13,18 +13,56 @@ public class GameManager : MonoBehaviour
 	[SerializeField] Transform peopleParent;
 
 	[SerializeField] Person personPrefab;
+	[SerializeField] Camera cameraMain;
 
 	List<Person> people = new List<Person>();
 
 	readonly Vector3 mapSize = new Vector3(24, 0, 24);
 	Person targetPerson;
+	Person lastHoveredPerson;
 
 	void Start()
 	{
-		CreateNewGame(50);
+		CreateNewGame(200);
 	}
 
-	void CreateNewGame(int nPeople)
+	void Update()
+	{
+		CheckForMousePositionAndClick();
+	}
+
+    private void CheckForMousePositionAndClick()
+    {
+		RaycastHit raycastHit;
+		Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+
+		if (Physics.Raycast(ray, out raycastHit))
+		{
+			Person person = raycastHit.transform.GetComponent<Person>();
+			if (person != null) 
+			{
+				person.SetHightlight(true);
+			}
+
+			if (lastHoveredPerson != null) {
+				lastHoveredPerson.SetHightlight(false);
+			}
+
+			lastHoveredPerson = person;
+
+			if (Input.GetMouseButtonDown(0) && person == targetPerson) {
+				Debug.Log("Acertaste , T O P");
+			}
+		} 
+		else
+		{
+			if (lastHoveredPerson != null) {
+				lastHoveredPerson.SetHightlight(false);
+			}
+		}
+    }
+
+    void CreateNewGame(int nPeople)
 	{
 		this.targetPerson = InstantiatePerson();
 		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
