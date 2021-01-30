@@ -70,10 +70,6 @@ public class Person : MonoBehaviour
 
 	public void SetHightlight(bool enabled)
 	{
-		if (enabled) {
-			outline.OutlineWidth = 1f;
-		} else {
-			outline.OutlineWidth = 0f;
-		}
+		outline.enabled = enabled;
 	}
 }
