@@ -33,6 +33,11 @@ public class Person : MonoBehaviour
 			SetRandomTarget();
 		}
 	}
+	
+	public void Disable()
+	{
+		navMeshAgent.enabled = false;
+	}
 
 	public void Setup(PersonAssets personAssets, Vector3 mapSize)
 	{

@@ -45,11 +45,17 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] Button restartButton;
 	[SerializeField] Button pauseButton;
-
+	
 	[SerializeField] Image headImage;
 	[SerializeField] Image maskImage;
 	[SerializeField] Image shirtImage;
 	[SerializeField] Image pantsImage;
+
+	[Header("Game End UI references")]
+	[SerializeField] TextMeshProUGUI endScreenText;
+	[SerializeField] TextMeshProUGUI timeLeftEndScreenText;
+	[SerializeField] Button restartButtonEndGame;
+	[SerializeField] Button mainMenuButtonEndGame;
 
 	List<Person> people = new List<Person>();
 
@@ -68,13 +74,21 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{
+		if (timeLeft <= 0) {
+			return;
+		}
+
 		timeLeft -= Time.deltaTime;
 		DrawTime(timeLeft);
+
+		if (timeLeft <= 0) {
+			EndGame(false);
+		}
 
 		CheckForMousePositionAndClick();
 	}
 
-	void RegisterUICallbacks()
+	private void RegisterUICallbacks()
 	{
 		restartButton.onClick.AddListener(() => {
 			CreateNewGame(200);
@@ -83,9 +97,19 @@ public class GameManager : MonoBehaviour
 		pauseButton.onClick.AddListener(() => {
 			/*  */
 		});
+
+		restartButtonEndGame.onClick.AddListener(() => {
+			CreateNewGame(200);
+			gameEndUIObject.SetActive(false);
+			gameUIObject.SetActive(true);
+		});
+
+		mainMenuButtonEndGame.onClick.AddListener(() => {
+			/*  */
+		});
 	}
 
-	void DrawTime(float time)
+	private void DrawTime(float time)
 	{
 		int minutes = (int) (time / 60);
 		time -= minutes * 60;
@@ -118,7 +142,7 @@ public class GameManager : MonoBehaviour
 			}
 
 			if (Input.GetMouseButtonDown(0) && person == targetPerson) {
-				Debug.Log("Acertaste , T O P");
+				EndGame(true);
 			}
 		}
 		else
@@ -129,7 +153,21 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	void CreateNewGame(int nPeople)
+	private void EndGame(bool isVictory)
+	{
+		foreach (Person person in people) {
+			person.Disable();
+		}
+		gameUIObject.SetActive(false);
+		gameEndUIObject.SetActive(true);
+
+		endScreenText.text = isVictory ? " You WON " : " You LOSE ";
+	
+		timeLeftEndScreenText.text = timeText.text;
+		timeLeftEndScreenText.enabled = isVictory;
+	}
+
+	private void CreateNewGame(int nPeople)
 	{
 		foreach (Transform child in peopleParent) {
 			Destroy(child.gameObject);
@@ -141,6 +179,11 @@ public class GameManager : MonoBehaviour
 		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
 		people.Add(this.targetPerson);
 
+		// headImage.sprite = targetPerson.PersonAssets.HeadAccessory.UIImage;
+		maskImage.sprite = targetPerson.PersonAssets.MaskMaterial.UIImage;
+		shirtImage.sprite = targetPerson.PersonAssets.ShirtMaterial.UIImage;
+		pantsImage.sprite = targetPerson.PersonAssets.PantsMaterial.UIImage;
+
 		for (int i = 0; i < nPeople-1; i++)	// -1 since target was already chosen
 		{
 			Person person = InstantiatePerson();
@@ -151,13 +194,13 @@ public class GameManager : MonoBehaviour
 		timeLeft = StartingTime;
 	}
 
-	Person InstantiatePerson()
+	private Person InstantiatePerson()
 	{
 		Person person = Instantiate(personPrefab, peopleParent);
 		return person;
 	}
 
-	PersonAssets GetRandomPersonAssets()
+	private PersonAssets GetRandomPersonAssets()
 	{
 		return new PersonAssets {
 			// HeadAccessory = ChooseRandom(assets.HeadAccessories),
@@ -167,7 +210,7 @@ public class GameManager : MonoBehaviour
 		};
 	}
 
-	PersonAssets GetRandomPersonAssetsDifferentFrom(PersonAssets personAssets)
+	private PersonAssets GetRandomPersonAssetsDifferentFrom(PersonAssets personAssets)
 	{
 		PersonAssets newPersonAssets;
 
@@ -183,7 +226,7 @@ public class GameManager : MonoBehaviour
 		return newPersonAssets;
 	}
 
-	T ChooseRandom<T>(T[] array)
+	private T ChooseRandom<T>(T[] array)
 	{
 		return array[Random.Range(0, array.Length)];
 	}

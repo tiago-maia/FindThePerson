@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e3183b39042cfc469bfb9de51d7e85d, type: 3}
   m_Name: Assets
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   HeadAccessories: []
   MaskMaterials:
   - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
@@ -28,17 +28,17 @@ MonoBehaviour:
     UIImage: {fileID: 0}
   ShirtMaterials:
   - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 7553b588cfb20d4438e5bc5894533bdd, type: 3}
   - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: bf50a0e25e9e9b9498f96c5cad3182e9, type: 3}
   - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 84bb3578598b4f442b844a19b83a4ba2, type: 3}
   - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 1080de73da6ab134ab0c43fbdd3aad44, type: 3}
   - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: bbac562c98670b94dbf8eaa058c21455, type: 3}
   - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 6733470d8842ba043b450e0c99a0af23, type: 3}
   PantsMaterials:
   - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
     UIImage: {fileID: 0}
