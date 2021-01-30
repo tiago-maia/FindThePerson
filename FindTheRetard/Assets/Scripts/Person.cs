@@ -11,8 +11,6 @@ public class Person : MonoBehaviour
 	[SerializeField]
 	private MeshFilter headMeshFilter;
 	[SerializeField]
-	private MeshRenderer headMeshRenderer;
-	[SerializeField]
 	private Outline outline;
 
 	public PersonAssets PersonAssets;
