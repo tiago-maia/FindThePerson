@@ -26,20 +26,20 @@ public class GameManager : MonoBehaviour
 
 	void CreateNewGame(int nPeople)
 	{
-		this.targetPerson = InstantiateRandomPerson();
+		this.targetPerson = InstantiatePerson();
 		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
 		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
 		people.Add(this.targetPerson);
 
 		for (int i = 0; i < nPeople-1; i++)	// -1 since target was already chosen
 		{
-			Person person = InstantiateRandomPerson();
+			Person person = InstantiatePerson();
 			person.Setup(GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets), mapSize);
 			people.Add(person);
 		}
 	}
 
-	Person InstantiateRandomPerson()
+	Person InstantiatePerson()
 	{
 		Person person = Instantiate(personPrefab, peopleParent);
 		return person;
