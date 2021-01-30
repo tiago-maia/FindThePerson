@@ -18,20 +18,20 @@ public class Person : MonoBehaviour
 
 	private Vector3 targetPoint;
 	private NavMeshAgent navMeshAgent;
-    private const float TARGET_REACHED_DISTANCE = 1f;
+	private const float TARGET_REACHED_DISTANCE = 1f;
 
 	void Start()
 	{
 		navMeshAgent = GetComponent<NavMeshAgent>();
-        SetRandomTarget();
+		SetRandomTarget();
 	}
 
-    void Update()
-    {
-        if ((targetPoint - transform.position).magnitude < TARGET_REACHED_DISTANCE) {
-				SetRandomTarget();
-			}
-    }
+	void Update()
+	{
+		if ((targetPoint - transform.position).magnitude < TARGET_REACHED_DISTANCE) {
+			SetRandomTarget();
+		}
+	}
 
 	public void Setup(Material maskMaterial, Material shirtMaterial, Material pantsMaterial, Mesh headAccessory)
 	{

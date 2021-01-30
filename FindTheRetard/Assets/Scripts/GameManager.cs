@@ -8,19 +8,19 @@ public class GameManager : MonoBehaviour
 	// Create instance of Correct Person
 
 	[SerializeField] Transform peopleParent;
-	
+
 	[SerializeField] Mesh[] headAccessories;
 	[SerializeField] Material[] maskMaterials;
 	[SerializeField] Material[] shirtMaterials;
 	[SerializeField] Material[] pantsMaterials;
-	
+
 	[SerializeField] Person personPrefab;
 
 	List<Person> people = new List<Person>();
 
 	void Start()
 	{
-		CreateNewGame(3000);
+		CreateNewGame(50);
 	}
 
 	void CreateNewGame(int nPeople)
