@@ -10,7 +10,6 @@ using DG.Tweening;
 - Restrict game to 16:9
 - Game UI - target person
 - Improve game "skybox"
-- Implement police/other weird people(?)
 */
 
 public class GameManager : MonoBehaviour
@@ -48,6 +47,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] Button restartButtonEndGame;
 	[SerializeField] Button mainMenuButtonEndGame;
 	[SerializeField] VideoPlayer endGameVideoPlayer;
+
+	[SerializeField] Person[] randomPeopleWithJOBS;
+	
 
 	enum Menu
 	{
@@ -251,9 +253,18 @@ public class GameManager : MonoBehaviour
 
 		for (int i = 0; i < nPeople-1; i++)	// -1 since target was already chosen
 		{
-			Person person = InstantiatePerson();
-			person.Setup(GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets), mapSize);
-			people.Add(person);
+			Person person;
+			PersonAssets personAssets;
+			int value = Random.Range(0,100);
+			if (value <= 20) {
+				person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
+				personAssets = null;
+			} else {
+				person = InstantiatePerson();
+				personAssets = GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets);
+			}
+				person.Setup(personAssets, mapSize);
+				people.Add(person);
 		}
 
 		timeLeft = StartingTime;

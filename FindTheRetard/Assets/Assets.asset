@@ -17,40 +17,36 @@ MonoBehaviour:
     UIImage: {fileID: 0}
   MaskMaterials:
   - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: ef7a5422104cbe04da74628f2f92f776, type: 3}
   - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 2d6281c474e2bbf41b2da13a857a4097, type: 3}
   - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 5c8a9ecf2f0346b4487104ccac0e6d00, type: 3}
   - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
-    UIImage: {fileID: 0}
-  - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
-    UIImage: {fileID: 0}
-  - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: c207022b6cea66c4a8e1267f155c4613, type: 3}
   ShirtMaterials:
   - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
-    UIImage: {fileID: 21300000, guid: 7553b588cfb20d4438e5bc5894533bdd, type: 3}
+    UIImage: {fileID: 21300000, guid: d243f3ac00e1506448c096bf4dd24d77, type: 3}
   - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
-    UIImage: {fileID: 21300000, guid: bf50a0e25e9e9b9498f96c5cad3182e9, type: 3}
+    UIImage: {fileID: 21300000, guid: 786dfccfe10e53246816079507fb94e5, type: 3}
   - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
-    UIImage: {fileID: 21300000, guid: 84bb3578598b4f442b844a19b83a4ba2, type: 3}
+    UIImage: {fileID: 21300000, guid: bb8f41c98cda71342abc2f83df024a7b, type: 3}
   - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
-    UIImage: {fileID: 21300000, guid: 1080de73da6ab134ab0c43fbdd3aad44, type: 3}
+    UIImage: {fileID: 21300000, guid: f169b9564871e764394e3be92c0d404b, type: 3}
   - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
-    UIImage: {fileID: 21300000, guid: bbac562c98670b94dbf8eaa058c21455, type: 3}
+    UIImage: {fileID: 21300000, guid: d4796086e698197499977254533ff6dc, type: 3}
   - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
-    UIImage: {fileID: 21300000, guid: 6733470d8842ba043b450e0c99a0af23, type: 3}
+    UIImage: {fileID: 21300000, guid: 042730338b8a3e94d93997e07dbd7e4d, type: 3}
   PantsMaterials:
   - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: d7904042b96e67843b8ea969d87e1d82, type: 3}
   - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 2a3ff1ff551b3e74bb49e204741502eb, type: 3}
   - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 5eb689f089cc2df43a1263516a9b0b04, type: 3}
   - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 2ffc5f34727b68e4493e2327faf19845, type: 3}
   - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: 8b19aac523f4cd946a03352323ffda52, type: 3}
   - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
-    UIImage: {fileID: 0}
+    UIImage: {fileID: 21300000, guid: c4d4688f946d913488304aedf48b766c, type: 3}
