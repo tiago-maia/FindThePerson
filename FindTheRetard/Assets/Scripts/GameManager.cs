@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	[Header("Project references")]
 	[SerializeField] Assets assets;
 	[SerializeField] Person personPrefab;
+	[SerializeField] AudioClip failClip;
 
 	[Header("Scene references")]
 	[SerializeField] Transform peopleParent;
@@ -191,8 +192,14 @@ public class GameManager : MonoBehaviour
 				lastHoveredPerson = person;
 			}
 
-			if (Input.GetMouseButtonDown(0) && person == targetPerson) {
-				EndGame(true);
+			if (Input.GetMouseButtonDown(0))
+			{
+				if (person == targetPerson) {
+					EndGame(true);
+				} else {
+					AudioSource.PlayClipAtPoint(failClip, cameraMain.transform.position);
+					cameraMain.transform.DOShakePosition(0.35f);
+				}
 			}
 		}
 		else
