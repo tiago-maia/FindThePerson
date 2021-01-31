@@ -51,7 +51,10 @@ public class Person : MonoBehaviour
 
 		if (personAssets != null)
 		{
-			// headMeshFilter.mesh = personAssets.HeadAccessory?.Mesh;
+			headMeshFilter.mesh = personAssets.HeadAccessory?.Mesh;
+			// if (personAssets.HeadAccessory != null) {
+			// 	Instantiate(personAssets.HeadAccessory.Mesh, headMeshFilter.transform);
+			// }
 
 			// needs to be done like this because the array Unity returns is a copy
 			Material[] materials = meshRenderer.materials;

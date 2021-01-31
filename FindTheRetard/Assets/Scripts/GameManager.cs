@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] AudioClip failClip;
 	[SerializeField] AudioClip victoryEndGameClip;
 	[SerializeField] AudioClip loseEndGameClip;
+	[SerializeField] AudioSource soundSource;
 
 	[Header("Scene references")]
 	[SerializeField] Transform peopleParent;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
 
 	const float StartingTime = 60 * 2;
 	float timeLeft;
+	Tween tween;
 
 	void Start()
 	{
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
 	void Update()
 	{
 		if (IsActiveMenu(Menu.Start)) return;
+		if (IsActiveMenu(Menu.End)) return;
 		if (timeLeft <= 0) return;
 
 		timeLeft -= Time.deltaTime;
@@ -134,9 +137,10 @@ public class GameManager : MonoBehaviour
 	private void OpenMenu(Menu menu)
 	{
 		// clear any pending things
+		soundSource.Stop();
 		endGameVideoPlayer.Stop();
 		themeAudioSource.DOKill();
-		themeAudioSource.volume = 1f;
+		themeAudioSource.volume = 0.5f;
 
 		// disable all menus
 		startMenuUIObject.SetActive(false);
@@ -201,7 +205,9 @@ public class GameManager : MonoBehaviour
 				if (person == targetPerson) {
 					EndGame(true);
 				} else {
-					AudioSource.PlayClipAtPoint(failClip, cameraMain.transform.position, 0.5f);
+					soundSource.clip = failClip;
+					soundSource.volume = 0.5f;
+					soundSource.Play();
 					cameraMain.transform.DOShakePosition(0.35f);
 				}
 			}
@@ -222,13 +228,23 @@ public class GameManager : MonoBehaviour
 
 		OpenMenu(Menu.End);
 
-		if (isVictory) {
-			AudioSource.PlayClipAtPoint(victoryEndGameClip, cameraMain.transform.position, 0.5f);
-		} else {
-			AudioSource.PlayClipAtPoint(loseEndGameClip, cameraMain.transform.position, 0.5f);
-		}
-
 		bool isTópe = timeLeft > StartingTime - 5f;	// finished game in less than 5s
+
+		if (!isTópe)
+		{
+			tween = DOTween.Sequence()
+				.AppendCallback(() => {
+					themeAudioSource.volume = 0.02f;
+					soundSource.clip = isVictory ? victoryEndGameClip : loseEndGameClip;
+					soundSource.volume = isVictory ? 0.65f : 1f;
+					soundSource.Play();
+				})
+				.AppendInterval(9f)
+				.AppendCallback(() => {
+					themeAudioSource.DOFade(0.5f, 0.25f);
+				})
+				.SetEase(Ease.Linear);
+		}
 
 		endScreenText.text = isVictory
 			? (isTópe ? "TÓPE!" : " You WON ")
@@ -252,7 +268,7 @@ public class GameManager : MonoBehaviour
 		const int nPeople = 100;
 
 		this.targetPerson = InstantiatePerson();
-		// this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
+		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
 		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
 		people.Add(this.targetPerson);
 
