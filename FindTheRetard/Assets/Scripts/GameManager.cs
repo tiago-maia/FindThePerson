@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 		// clear any pending things
 		endGameVideoPlayer.Stop();
 		themeAudioSource.DOKill();
-		themeAudioSource.volume = 0.5f;
+		themeAudioSource.volume = 1f;
 
 		// disable all menus
 		startMenuUIObject.SetActive(false);
