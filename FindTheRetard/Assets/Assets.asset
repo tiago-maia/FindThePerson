@@ -16,13 +16,13 @@ MonoBehaviour:
   - Mesh: {fileID: 0}
     UIImage: {fileID: 0}
   MaskMaterials:
-  - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+  - Material: {fileID: 2100000, guid: ba993620f0d739643bc4ad4714ef3500, type: 2}
     UIImage: {fileID: 21300000, guid: ef7a5422104cbe04da74628f2f92f776, type: 3}
-  - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
+  - Material: {fileID: 2100000, guid: 5ebaeb94c7de2a045b226406858b9324, type: 2}
     UIImage: {fileID: 21300000, guid: 2d6281c474e2bbf41b2da13a857a4097, type: 3}
-  - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
+  - Material: {fileID: 2100000, guid: 59ff211a083ccc047b7c9f2a0a1c655e, type: 2}
     UIImage: {fileID: 21300000, guid: 5c8a9ecf2f0346b4487104ccac0e6d00, type: 3}
-  - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
+  - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
     UIImage: {fileID: 21300000, guid: c207022b6cea66c4a8e1267f155c4613, type: 3}
   ShirtMaterials:
   - Material: {fileID: 2100000, guid: 1d10972f563c23540b6c40ef66a57827, type: 2}
@@ -38,7 +38,7 @@ MonoBehaviour:
   - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
     UIImage: {fileID: 21300000, guid: 0552821a53987e64c8ee3d56b27c1ba8, type: 3}
   PantsMaterials:
-  - Material: {fileID: 2100000, guid: b1df4725356927047b1e151599b372ff, type: 2}
+  - Material: {fileID: 0}
     UIImage: {fileID: 21300000, guid: d7904042b96e67843b8ea969d87e1d82, type: 3}
   - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
     UIImage: {fileID: 21300000, guid: 2a3ff1ff551b3e74bb49e204741502eb, type: 3}
