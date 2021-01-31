@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] VideoPlayer endGameVideoPlayer;
 
 	[SerializeField] Person[] randomPeopleWithJOBS;
+	[SerializeField] Sprite victorySprite;
+	[SerializeField] Sprite loseSprite;
 
 	enum Menu
 	{
