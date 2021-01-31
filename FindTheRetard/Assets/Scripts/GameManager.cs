@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 	[Header("Game UI references")]
 	[SerializeField] TextMeshProUGUI timeText;
 	[SerializeField] Button restartButton;
+	[SerializeField] Button quitButton;
 
 	[SerializeField] Image headImage;
 	[SerializeField] Image maskImage;
@@ -99,6 +100,10 @@ public class GameManager : MonoBehaviour
 
 		restartButton.onClick.AddListener(() => {
 			CreateNewGame();
+		});
+
+		quitButton.onClick.AddListener(() => {
+			Application.Quit();
 		});
 
 		restartButtonEndGame.onClick.AddListener(() => {
@@ -268,14 +273,14 @@ public class GameManager : MonoBehaviour
 		const int nPeople = 100;
 
 		this.targetPerson = InstantiatePerson();
-		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
+		// this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
 		this.targetPerson.Setup(GetRandomPersonAssets(), mapSize);
 		people.Add(this.targetPerson);
 
 		headImage.sprite = targetPerson.PersonAssets.HeadAccessory.UIImage;
 		maskImage.sprite = targetPerson.PersonAssets.MaskMaterial.UIImage;
 		shirtImage.sprite = targetPerson.PersonAssets.ShirtMaterial.UIImage;
-		pantsImage.sprite = targetPerson.PersonAssets.PantsMaterial.UIImage;
+		// pantsImage.sprite = targetPerson.PersonAssets.PantsMaterial.UIImage;
 
 		for (int i = 0; i < nPeople-1; i++)	// -1 since target was already chosen
 		{
@@ -310,7 +315,7 @@ public class GameManager : MonoBehaviour
 			HeadAccessory = ChooseRandom(assets.HeadAccessories),
 			MaskMaterial = ChooseRandom(assets.MaskMaterials),
 			ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
-			PantsMaterial = ChooseRandom(assets.PantsMaterials)
+			// PantsMaterial = ChooseRandom(assets.PantsMaterials).
 		};
 	}
 
@@ -323,7 +328,7 @@ public class GameManager : MonoBehaviour
 				HeadAccessory = ChooseRandom(assets.HeadAccessories),
 				MaskMaterial = ChooseRandom(assets.MaskMaterials),
 				ShirtMaterial = ChooseRandom(assets.ShirtMaterials),
-				PantsMaterial = ChooseRandom(assets.PantsMaterials)
+				// PantsMaterial = ChooseRandom(assets.PantsMaterials).
 			};
 		} while (personAssets.Equals(newPersonAssets));
 

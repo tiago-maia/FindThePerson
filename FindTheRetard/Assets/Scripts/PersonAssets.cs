@@ -12,6 +12,7 @@ public class PersonAssets : IEquatable<PersonAssets>
 		return this.HeadAccessory == other.HeadAccessory
 			&& this.MaskMaterial == other.MaskMaterial
 			&& this.ShirtMaterial == other.ShirtMaterial
-			&& this.PantsMaterial == other.PantsMaterial;
+			// && this.PantsMaterial == other.PantsMaterial
+			;
 	}
 }
