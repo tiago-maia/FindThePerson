@@ -81,6 +81,17 @@ public class Person : MonoBehaviour
 		);
 	}
 
+	// public Vector3 RandomNavmeshLocation(float radius)
+	// {
+	// 	Vector3 randomDirection = Random.insideUnitSphere * radius;
+	// 	randomDirection += transform.position;
+	// 	Vector3 finalPosition = Vector3.zero;
+	// 	if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, radius, 1)) {
+	// 		finalPosition = hit.position;
+	// 	}
+	// 	return finalPosition;
+	//  }
+
 	public void SetHightlight(bool enabled)
 	{
 		outline.enabled = enabled;
