@@ -7,7 +7,7 @@ using OutlineNamespace;
 public class Person : MonoBehaviour
 {
 	[SerializeField]
-	private MeshRenderer meshRenderer;
+	private SkinnedMeshRenderer meshRenderer;
 	[SerializeField]
 	private MeshFilter headMeshFilter;
 	[SerializeField]
@@ -30,7 +30,7 @@ public class Person : MonoBehaviour
 	{
 		if (!navMeshAgent.enabled) return;
 
-		if ((targetPoint - transform.position).magnitude < TARGET_REACHED_DISTANCE) {
+		if ((targetPoint.x - transform.position.x) < TARGET_REACHED_DISTANCE && (targetPoint.z - transform.position.z) < TARGET_REACHED_DISTANCE) {
 			SetRandomTarget();
 		}
 	}
@@ -51,9 +51,9 @@ public class Person : MonoBehaviour
 
 			// needs to be done like this because the array Unity returns is a copy
 			Material[] materials = meshRenderer.materials;
-			materials[0] = personAssets.MaskMaterial.Material;
-			materials[1] = personAssets.ShirtMaterial.Material;
-			materials[2] = personAssets.PantsMaterial.Material;
+			materials[1] = personAssets.PantsMaterial.Material;
+			materials[2] = personAssets.ShirtMaterial.Material;
+			materials[3] = personAssets.MaskMaterial.Material;
 			meshRenderer.materials = materials;
 		}
 

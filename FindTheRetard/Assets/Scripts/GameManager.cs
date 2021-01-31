@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
 	List<Person> people = new List<Person>();
 
-	readonly Vector3 mapSize = new Vector3(24, 0, 24);
+	readonly Vector3 mapSize = new Vector3(200, 0, 100);
 	Person targetPerson;
 	Person lastHoveredPerson;
 
@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
 		}
 		people.Clear();
 
-		const int nPeople = 200;
+		const int nPeople = 50;
 
 		this.targetPerson = InstantiatePerson();
 		this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
@@ -256,13 +256,14 @@ public class GameManager : MonoBehaviour
 			Person person;
 			PersonAssets personAssets;
 			int value = Random.Range(0,100);
-			if (value <= 20) {
-				person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
 				personAssets = null;
 			} else {
+			// int value = Random.Range(0,100);
+			// if (value <= 20) {
+			// } else {
 				person = InstantiatePerson();
 				personAssets = GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets);
-			}
+			// }
 				person.Setup(personAssets, mapSize);
 				people.Add(person);
 		}
