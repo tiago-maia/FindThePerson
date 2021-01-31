@@ -9571,6 +9571,7 @@ MonoBehaviour:
   assets: {fileID: 11400000, guid: 0aa5a63d78206a349bd582212c8fcc5b, type: 2}
   personPrefab: {fileID: 5737561346811135565, guid: 61067dfae819a774a83c1bba68b43bbc,
     type: 3}
+  failClip: {fileID: 8300000, guid: 492702113c0d88c43a60dc4c61c637bc, type: 3}
   peopleParent: {fileID: 1661876762}
   cameraMain: {fileID: 834941837}
   themeAudioSource: {fileID: 239013560}

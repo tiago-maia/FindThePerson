@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
 				if (person == targetPerson) {
 					EndGame(true);
 				} else {
-					AudioSource.PlayClipAtPoint(failClip, cameraMain.transform.position);
+					AudioSource.PlayClipAtPoint(failClip, cameraMain.transform.position, 0.5f);
 					cameraMain.transform.DOShakePosition(0.35f);
 				}
 			}
