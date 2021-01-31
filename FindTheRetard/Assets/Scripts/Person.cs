@@ -29,7 +29,7 @@ public class Person : MonoBehaviour
 	{
 		if (!navMeshAgent.enabled) return;
 
-		if ((targetPoint.x - transform.position.x) < TARGET_REACHED_DISTANCE && (targetPoint.z - transform.position.z) < TARGET_REACHED_DISTANCE) {
+		if ((targetPoint - transform.position).magnitude < TARGET_REACHED_DISTANCE) {
 			SetRandomTarget();
 		}
 	}
@@ -68,8 +68,25 @@ public class Person : MonoBehaviour
 
 	private void SetRandomTarget()
 	{
-		targetPoint = GetRandomMapPosition();
-		navMeshAgent.destination = targetPoint;
+		StopCoroutine("SetRandomTargetRoutine");
+		StartCoroutine("SetRandomTargetRoutine");
+	}
+
+	private IEnumerator SetRandomTargetRoutine()
+	{
+		while (true)
+		{
+			targetPoint = GetRandomMapPosition();
+
+			var path = new NavMeshPath();
+			navMeshAgent.CalculatePath(targetPoint, path);
+			if (path.status == NavMeshPathStatus.PathComplete) {
+				navMeshAgent.destination = targetPoint;
+				break;
+			}
+
+			yield return null;
+		}
 	}
 
 	private Vector3 GetRandomMapPosition()
