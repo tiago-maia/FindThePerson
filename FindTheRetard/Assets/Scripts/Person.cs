@@ -29,7 +29,7 @@ public class Person : MonoBehaviour
 	{
 		if (!navMeshAgent.enabled) return;
 
-		if ((targetPoint.x - transform.position.x) < TARGET_REACHED_DISTANCE && (targetPoint.z - transform.position.z) < TARGET_REACHED_DISTANCE) {
+		if ((targetPoint - transform.position).magnitude < TARGET_REACHED_DISTANCE) {
 			SetRandomTarget();
 		}
 	}
@@ -68,8 +68,25 @@ public class Person : MonoBehaviour
 
 	private void SetRandomTarget()
 	{
-		targetPoint = GetRandomMapPosition();
-		navMeshAgent.destination = targetPoint;
+		StopCoroutine("SetRandomTargetRoutine");
+		StartCoroutine("SetRandomTargetRoutine");
+	}
+
+	private IEnumerator SetRandomTargetRoutine()
+	{
+		while (true)
+		{
+			targetPoint = GetRandomMapPosition();
+
+			var path = new NavMeshPath();
+			navMeshAgent.CalculatePath(targetPoint, path);
+			if (path.status == NavMeshPathStatus.PathComplete) {
+				navMeshAgent.destination = targetPoint;
+				break;
+			}
+
+			yield return null;
+		}
 	}
 
 	private Vector3 GetRandomMapPosition()
@@ -80,6 +97,17 @@ public class Person : MonoBehaviour
 			Random.Range(-mapSize.z/2, mapSize.z/2)
 		);
 	}
+
+	// public Vector3 RandomNavmeshLocation(float radius)
+	// {
+	// 	Vector3 randomDirection = Random.insideUnitSphere * radius;
+	// 	randomDirection += transform.position;
+	// 	Vector3 finalPosition = Vector3.zero;
+	// 	if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, radius, 1)) {
+	// 		finalPosition = hit.position;
+	// 	}
+	// 	return finalPosition;
+	//  }
 
 	public void SetHightlight(bool enabled)
 	{

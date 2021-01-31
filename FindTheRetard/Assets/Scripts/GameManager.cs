@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
 		}
 		people.Clear();
 
-		const int nPeople = 1000;
+		const int nPeople = 100;
 
 		this.targetPerson = InstantiatePerson();
 		// this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
