@@ -20,7 +20,6 @@ public class Person : MonoBehaviour
 	private NavMeshAgent navMeshAgent;
 	private const float TARGET_REACHED_DISTANCE = 1f;
 
-
 	void Awake()
 	{
 		navMeshAgent = GetComponent<NavMeshAgent>();
@@ -33,6 +32,11 @@ public class Person : MonoBehaviour
 		if ((targetPoint.x - transform.position.x) < TARGET_REACHED_DISTANCE && (targetPoint.z - transform.position.z) < TARGET_REACHED_DISTANCE) {
 			SetRandomTarget();
 		}
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawSphere(targetPoint, 0.3f);
 	}
 
 	public void Disable()

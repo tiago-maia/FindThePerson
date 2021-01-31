@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
 	List<Person> people = new List<Person>();
 
-	readonly Vector3 mapSize = new Vector3(200, 0, 100);
+	readonly Vector3 mapSize = new Vector3(157.891f, 0, 128.126f);
 	Person targetPerson;
 	Person lastHoveredPerson;
 
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
 		}
 		people.Clear();
 
-		const int nPeople = 50;
+		const int nPeople = 1000;
 
 		this.targetPerson = InstantiatePerson();
 		// this.targetPerson.transform.localScale = new Vector3(2, 2, 2);
