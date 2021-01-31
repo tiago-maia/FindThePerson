@@ -40,13 +40,3 @@ MonoBehaviour:
   PantsMaterials:
   - Material: {fileID: 0}
     UIImage: {fileID: 21300000, guid: d7904042b96e67843b8ea969d87e1d82, type: 3}
-  - Material: {fileID: 2100000, guid: 48601be05feedc944995215a4ef5e0a8, type: 2}
-    UIImage: {fileID: 21300000, guid: 2a3ff1ff551b3e74bb49e204741502eb, type: 3}
-  - Material: {fileID: 2100000, guid: a5cd25bdbd4db4f44a4855b965fcd74f, type: 2}
-    UIImage: {fileID: 21300000, guid: 5eb689f089cc2df43a1263516a9b0b04, type: 3}
-  - Material: {fileID: 2100000, guid: 1f3bc08051fd08443939ba4be97c6144, type: 2}
-    UIImage: {fileID: 21300000, guid: 2ffc5f34727b68e4493e2327faf19845, type: 3}
-  - Material: {fileID: 2100000, guid: 4127ba28f34458e4fba8ced52587192e, type: 2}
-    UIImage: {fileID: 21300000, guid: 8b19aac523f4cd946a03352323ffda52, type: 3}
-  - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
-    UIImage: {fileID: 21300000, guid: c4d4688f946d913488304aedf48b766c, type: 3}
