@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] Assets assets;
 	[SerializeField] Person personPrefab;
 	[SerializeField] AudioClip failClip;
+	[SerializeField] AudioClip victoryEndGameClip;
+	[SerializeField] AudioClip loseEndGameClip;
 
 	[Header("Scene references")]
 	[SerializeField] Transform peopleParent;
@@ -218,6 +220,12 @@ public class GameManager : MonoBehaviour
 
 		OpenMenu(Menu.End);
 
+		if (isVictory) {
+			AudioSource.PlayClipAtPoint(victoryEndGameClip, cameraMain.transform.position, 0.5f);
+		} else {
+			AudioSource.PlayClipAtPoint(loseEndGameClip, cameraMain.transform.position, 0.5f);
+		}
+
 		bool isTópe = timeLeft > StartingTime - 5f;	// finished game in less than 5s
 
 		endScreenText.text = isVictory
@@ -255,14 +263,15 @@ public class GameManager : MonoBehaviour
 		{
 			Person person;
 			PersonAssets personAssets;
-			// int value = Random.Range(0,100);
-			// if (value <= 20) {
-			// 	person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
-			// 	personAssets = null;
-			// } else {
+
+			int value = Random.Range(0,100);
+			if (value <= 20) {
+				person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
+				personAssets = null;
+			} else {
 				person = InstantiatePerson();
 				personAssets = GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets);
-			// }
+			}
 
 			person.Setup(personAssets, mapSize);
 			people.Add(person);

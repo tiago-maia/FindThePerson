@@ -34,10 +34,10 @@ public class Person : MonoBehaviour
 		}
 	}
 
-	void OnDrawGizmos()
-	{
-		Gizmos.DrawSphere(targetPoint, 0.3f);
-	}
+	// void OnDrawGizmos()
+	// {
+	// 	Gizmos.DrawSphere(targetPoint, 0.3f);
+	// }
 
 	public void Disable()
 	{

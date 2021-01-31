@@ -3485,6 +3485,12 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5086727986680746777, guid: 7cc744eaf54592e4b93ab8b8b33b51be,
+        type: 3}
     - target: {fileID: -1816994668523422135, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9572,6 +9578,8 @@ MonoBehaviour:
   personPrefab: {fileID: 5737561346811135565, guid: 61067dfae819a774a83c1bba68b43bbc,
     type: 3}
   failClip: {fileID: 8300000, guid: 492702113c0d88c43a60dc4c61c637bc, type: 3}
+  victoryEndGameClip: {fileID: 8300000, guid: a68c57c5f4275c94bb14c795ac95d2e3, type: 3}
+  loseEndGameClip: {fileID: 8300000, guid: 32af7a1b2a89e9a4c9acd270cc484f34, type: 3}
   peopleParent: {fileID: 1661876762}
   cameraMain: {fileID: 834941837}
   themeAudioSource: {fileID: 239013560}
@@ -9591,7 +9599,10 @@ MonoBehaviour:
   restartButtonEndGame: {fileID: 1813397073}
   mainMenuButtonEndGame: {fileID: 1924216998}
   endGameVideoPlayer: {fileID: 1023197267}
-  randomPeopleWithJOBS: []
+  randomPeopleWithJOBS:
+  - {fileID: 5737561346811135565, guid: 46e88e1d1ef36164fb005d1cf46b9476, type: 3}
+  - {fileID: 5737561346811135565, guid: 0e536c59094d7194fb53ef54197f6f68, type: 3}
+  - {fileID: 5737561346811135565, guid: 0283c369235bdf2489df7cb8844acc76, type: 3}
 --- !u!4 &602082213
 Transform:
   m_ObjectHideFlags: 0
@@ -10885,10 +10896,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
         type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30a602f7c4fa7434bb6c06988d34fb2d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: bcd4e9e73e817194a897164684bdde97, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: bcd4e9e73e817194a897164684bdde97, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
+        type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
-      objectReference: {fileID: -6077740309139286902, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: bcd4e9e73e817194a897164684bdde97, type: 2}
     - target: {fileID: -1816994668523422135, guid: 79578100ed4ac2b41b62a95e7a9c58a4,
         type: 3}
       propertyPath: m_StaticEditorFlags
