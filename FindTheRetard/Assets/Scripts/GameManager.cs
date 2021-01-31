@@ -255,11 +255,10 @@ public class GameManager : MonoBehaviour
 		{
 			Person person;
 			PersonAssets personAssets;
-			int value = Random.Range(0,100);
-				personAssets = null;
-			} else {
 			// int value = Random.Range(0,100);
 			// if (value <= 20) {
+			// 	person = Instantiate(ChooseRandom(randomPeopleWithJOBS), peopleParent);
+			// 	personAssets = null;
 			// } else {
 				person = InstantiatePerson();
 				personAssets = GetRandomPersonAssetsDifferentFrom(targetPerson.PersonAssets);
