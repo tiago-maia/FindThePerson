@@ -13,8 +13,24 @@ MonoBehaviour:
   m_Name: Assets
   m_EditorClassIdentifier: 
   HeadAccessories:
-  - Mesh: {fileID: 0}
-    UIImage: {fileID: 0}
+  - Mesh: {fileID: 919132149155446097, guid: 2b7925b4f6b2a104db4eaadb04e3e463, type: 3}
+    UIImage: {fileID: 21300000, guid: 14a0102122b75374a9a2303766eae50b, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: eeab16dab5ae0444b94a3d7b0d9b2fd3, type: 3}
+    UIImage: {fileID: 21300000, guid: d7c2a4d53c654164b91e4f0852e7d247, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: 39e99fa37bea27c47bc1f76c8eebc654, type: 3}
+    UIImage: {fileID: 21300000, guid: b5fc7a4742293194b8a093e2530f10f3, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: f14be766bf393614fb1a13ce39a9a61a, type: 3}
+    UIImage: {fileID: 21300000, guid: f9735372e40877f43b453330f2d92621, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: a468e85e3018b754494dbd8134116bf8, type: 3}
+    UIImage: {fileID: 21300000, guid: b827616e0d5a9a042b96c6b1aab8012a, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: c41effc8edeac9c4fa1e83e845232cb4, type: 3}
+    UIImage: {fileID: 21300000, guid: 8af52432b71da0844adff682b23b1992, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: 95918d533b752e44c859567f80acbbd5, type: 3}
+    UIImage: {fileID: 21300000, guid: ee6c1bd50d1612641893c9d2e456c2b5, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: 34a2b4e2f5708644bb984d68e6a32969, type: 3}
+    UIImage: {fileID: 21300000, guid: 71c3f575616afab4984418dbc0ccf3d3, type: 3}
+  - Mesh: {fileID: 919132149155446097, guid: 483e88b41a29c40458023c72c962e102, type: 3}
+    UIImage: {fileID: 21300000, guid: 0ada8806cf06edf41a70ac4c0d5d4252, type: 3}
   MaskMaterials:
   - Material: {fileID: 2100000, guid: ba993620f0d739643bc4ad4714ef3500, type: 2}
     UIImage: {fileID: 21300000, guid: ef7a5422104cbe04da74628f2f92f776, type: 3}
@@ -38,5 +54,5 @@ MonoBehaviour:
   - Material: {fileID: 2100000, guid: 9c75c2e4194be614a8532234d2a82f23, type: 2}
     UIImage: {fileID: 21300000, guid: 0552821a53987e64c8ee3d56b27c1ba8, type: 3}
   PantsMaterials:
-  - Material: {fileID: 0}
+  - Material: {fileID: 2100000, guid: c2a0ec6739351574f962055790ac8256, type: 2}
     UIImage: {fileID: 21300000, guid: d7904042b96e67843b8ea969d87e1d82, type: 3}

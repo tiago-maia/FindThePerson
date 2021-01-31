@@ -13,7 +13,7 @@ public class Assets : ScriptableObject
 	[Serializable]
 	public class MeshAndSpritePair
 	{
-		public Mesh Mesh;
+		public GameObject Mesh;
 		public Sprite UIImage;
 	}
 
